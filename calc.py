@@ -1,2 +1,4 @@
 def calc(s):
-    return s
+    return int(s)
+
+print(calc("1"))
