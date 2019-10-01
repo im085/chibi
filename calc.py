@@ -4,22 +4,17 @@ def calc(s):
     symb = re.split('\d+', s)
     nums = re.split('[+*]', s)
     nums = [int(j) for j in nums]
+    del symb[0]
+    del symb[-1]
+    i = 0
 
-    print(nums)
+    for j in range(len(symb)):
+        if symb[i] == "*":
+           nums[i] = nums[i] * nums[i+1]
+           del nums[i+1]
+           del symb[i]
+           i = i - 1
+        i = i + 1
+    return sum(nums)
 
-    n = nums[0]
-    k = 1
-
-    for i in symb:
-        if i == "+":
-            n = n + nums[k]
-            k = k + 1
-        elif i == "*":
-            n = n * nums[k]
-            k = k + 1
-        else:
-            pass
- 
-    return n
-
-print(calc("1+2+3*4"))
+print(calc("3+7*4"))
