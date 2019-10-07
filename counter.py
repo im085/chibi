@@ -11,7 +11,12 @@ class Counter(object):
     def show(self):
         print(self.cnt)
 
+    def __repr__(self):
+        return str(self.cnt)
+
 c = Counter()
 c.show()
 c.doublecount()
 c.show()
+print(type(c))
+print(c)
