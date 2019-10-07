@@ -1,6 +1,7 @@
 class Q(object):
     def __init__(self, a, b): #コンストラクタ
-        self.a = 0
-        self.b = 1
+        self.a = a
+        self.b = b
 
 q = Q(1, 2)
+print(q)
