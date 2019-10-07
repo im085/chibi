@@ -1,3 +1,5 @@
+import math
+
 class Q(object):
     def __init__(self, a, b = 1): #コンストラクタ
         self.a = a
@@ -35,11 +37,9 @@ class Q(object):
         if self.b == 1:
             return str(self.a)
         else:
-            return f"{self.a}/{self.b}"
+            a = self.a / math.gcd(self.a, self.b)
+            b = self.b / math.gcd(self.a, self.b)
+            return f"{int(a)}/{int(b)}"
 
-q1 = Q(1,2)
-q2 = Q(1,3)
-print(q1 + q2)
-print(q1 - q2)
-print(q1 * q2)
-print(q1 / q2)
+q = Q(2,4)
+print(q)
