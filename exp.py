@@ -17,7 +17,6 @@ assert v.eval() == 1
 
 assert isinstance(v, Expr)
 assert isinstance(v, Val)
-assert isinstance(v, int)
 
 
 class Add(Expr):
