@@ -32,6 +32,5 @@ assert e.eval() == 3
 e = Add(1,2)
 assert e.eval() == 3
 
-
 e = Add(Val(1),Add(Val(2),Val(3)))
 assert e.eval() == 6
