@@ -1,10 +1,9 @@
-exapmple Value 123456789
-exapmple Value 123
+exapmple Expr 1+2*3
 
-Zip = {
-    Value '-' Value
-    #Zip
-}
+Expr = {Value '+' Expr #Add}
+     / {Value '*' Expr #Mul}
+     /Value
+
 
 DIGIT = [0-9]
 Value = { DIGIT + #Int }
