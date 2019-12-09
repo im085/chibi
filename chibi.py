@@ -34,26 +34,47 @@ class Binary(Expr):
     def __repr__(self):
         classname = self.__class__.__name__
         return f'{classname}({self.left},{self.right})'
+
 class Add(Binary):
     __slots__ = ['left', 'right']
     def eval(self, env: dict):
         return self.left.eval(env) + self.right.eval(env)
+
 class Sub(Binary):
     __slots__ = ['left', 'right']
     def eval(self, env: dict):
         return self.left.eval(env) - self.right.eval(env)
+
 class Mul(Binary):
     __slots__ = ['left', 'right']
     def eval(self, env: dict):
         return self.left.eval(env) * self.right.eval(env)
+
 class Div(Binary):
     __slots__ = ['left', 'right']
     def eval(self, env: dict):
         return self.left.eval(env) // self.right.eval(env)
+
 class Mod(Binary):
     __slots__ = ['left', 'right']
     def eval(self, env: dict):
         return self.left.eval(env) % self.right.eval(env)
+
+class Eq(Binary): # Left == right
+    __slots__ = ['left', 'right']
+    def eval(self, env: dict):  #cond ? x : y
+        return 1 if self.left.eval(env) == self.right.eval(env) else 0
+
+class Ne(Binary): # Left == right
+    __slots__ = ['left', 'right']
+    def eval(self, env: dict):  #cond ? x : y
+        return 1 if self.left.eval(env) != self.right.eval(env) else 0
+
+class Lt(Binary): # Left == right
+    __slots__ = ['left', 'right']
+    def eval(self, env: dict):  #cond ? x : y
+        return 1 if self.left.eval(env) < self.right.eval(env) else 0
+
 class Var(Expr):
     __slots__ = ['name']
     def __init__(self, name:str):
@@ -88,6 +109,8 @@ def conv(tree):
         return Div(conv(tree[0]), conv(tree[1]))
     if tree == 'Mod':
         return Mod(conv(tree[0]), conv(tree[1]))
+    if tree == 'Lt':
+        return 
     if tree == 'Var':
         return Var(str(tree[0], conv(tree[1])))
     if tree == 'LetDecl':
