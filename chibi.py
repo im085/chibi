@@ -136,9 +136,8 @@ class While(Expr):
         self.cond = cond
         self.body = body
     def eval(self, env):
-        while self.cond == 1:
-            return self.body.eval(env)
-        
+        while self.cond != 0:
+            self.body.eval(env)
 
 def conv(tree):
     if tree == 'Block':
@@ -195,3 +194,10 @@ def main():
         return
 if __name__ == '__main__':
     main()
+    #Block
+    e = Block(
+        Assign('x',Val(1)),
+        Assign('x',Add(Var('x'), Val(1))),
+        Var('x')
+    )
+    assert e.eval({}) == 2
