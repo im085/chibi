@@ -78,17 +78,17 @@ class Lt(Binary): # Left == right
 class Lte(Binary): # Left == right
     __slots__ = ['left', 'right']
     def eval(self, env: dict):  #cond ? x : y
-        return 1 if self.left.eval(env) > self.right.eval(env) else 0
+        return 1 if self.left.eval(env) <= self.right.eval(env) else 0
 
 class Gt(Binary): # Left == right
     __slots__ = ['left', 'right']
     def eval(self, env: dict):  #cond ? x : y
-        return 1 if self.left.eval(env) < self.right.eval(env) else 0
+        return 1 if self.left.eval(env) > self.right.eval(env) else 0
 
 class Gte(Binary): # Left == right
     __slots__ = ['left', 'right']
     def eval(self, env: dict):  #cond ? x : y
-        return 1 if self.left.eval(env) > self.right.eval(env) else 0
+        return 1 if self.left.eval(env) >= self.right.eval(env) else 0
 
 class Var(Expr):
     __slots__ = ['name']
@@ -181,6 +181,14 @@ def run(src: str, env: dict):
         e = conv(tree)
         print('env', env)
         print(e.eval(env))
+
+e = Block(
+    Assign('x',Val(1)),
+    Assign('y',Val(2)),
+    If(Gt(Var('x'), Var('y')), Var('x'), Var('y'))
+)
+assert e.eval({}) == 2
+    
 def main():
     try:
         env = {}
@@ -193,10 +201,3 @@ def main():
         return
 if __name__ == '__main__':
     main()
-    #Block
-    e = Block(
-        Assign('x',Val(1)),
-        Assign('x',Add(Var('x'), Val(1))),
-        Var('x')
-    )
-    assert e.eval({}) == 2
