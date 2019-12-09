@@ -98,7 +98,6 @@ class Var(Expr):
         if self.name in env:
             return env[self.name]
         raise NameError(self.name)
-        return env[0]
 
 class Assign(Expr):
     __slots__ = ['name', 'Expr']
