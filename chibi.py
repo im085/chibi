@@ -112,7 +112,7 @@ def conv(tree):
     if tree == 'Lt':
         return Lt(conv(tree[0]), conv(tree[1]))
     if tree == 'Var':
-        return Var(str(tree[0], conv(tree[1])))
+        return Var(str(tree))
     if tree == 'LetDecl':
         return Assign(str(tree[0]), conv(tree[1]))
     print('@TODO', tree.tag)
